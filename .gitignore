@@ -1,0 +1,7 @@
+/__pycache__
+alpaca_secrets.py
+api_keys.py
+/trading_env
+email_secrets.py
+.DS_store
+/example files
