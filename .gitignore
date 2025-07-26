@@ -5,3 +5,5 @@ api_keys.py
 email_secrets.py
 .DS_store
 /example files
+/alpaca_live_trader/__pycache__
+/alpaca_oms/__pycache__
