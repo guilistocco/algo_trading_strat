@@ -13,7 +13,7 @@ import sys
 import os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from alpaca_secrets import APCA_API_KEY_ID, APCA_API_SECRET_KEY
-
+# alpaca_client = TradingClient(APCA_API_KEY_ID, APCA_API_SECRET_KEY, paper=True)
 
 # Define o tempo de atualização
 REFRESH_INTERVAL_MINUTES = 10
