@@ -7,3 +7,4 @@ email_secrets.py
 /example files
 /alpaca_live_trader/__pycache__
 /alpaca_oms/__pycache__
+*.csv
