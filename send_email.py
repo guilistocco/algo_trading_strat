@@ -32,4 +32,3 @@ class EmailSender:
 
 # 05 23 * * * trading_env/bin/python3.10 /Users/guilistocco/Documents/CQF/Trabalho_Final/send_email.py 
 # 10 23 * * *  /Users/guilistocco/Documents/CQF/Trabalho_Final/trading_env/bin/python3.10 /Users/guilistocco/Documents/CQF/Trabalho_Final/send_email.py >> /Users/guilistocco/Documents/CQF/Trabalho_Final/logs/email_cron.log 2>&1
-# ttps://paper-api.alpaca.markets
