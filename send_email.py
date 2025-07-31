@@ -1,5 +1,6 @@
 from datetime import datetime
 import smtplib
+import pendulum
 from email.mime.text import MIMEText
 from email_secrets import EMAIL_SENDER, APP_PASSWORD
 
@@ -17,7 +18,9 @@ class EmailSender:
             with smtplib.SMTP_SSL("smtp.gmail.com", 465) as server:
                 server.login(self.sender_email, self.app_password)
                 server.sendmail(self.sender_email, receiver_email, msg.as_string())
-            print("✅ Email enviado com sucesso. " + datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
+                now = pendulum.now("America/Sao_Paulo")
+                now_str = now.format("YYYY-MM-DD HH:mm:ss")
+            print("✅ Email enviado com sucesso. " + now_str)
         except Exception as e:
             print("❌ Falha ao enviar email:")
             print(e)

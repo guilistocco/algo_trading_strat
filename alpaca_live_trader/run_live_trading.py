@@ -12,8 +12,9 @@ from datetime import datetime
 import hashlib
 
 import time
-from data_feed import fetch_recent_data
-from signal_engine import generate_signal
+from crypto_data_feed import fetch_recent_data
+# from signal_engine import generate_signal
+from signal_ethereum import generate_signal
 from order_executor import send_order, close_position
 from stage_manager import load_state, save_state
 
