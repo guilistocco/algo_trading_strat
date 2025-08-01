@@ -7,7 +7,6 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.append(str(ROOT))
 
-from send_email import EmailSender
 from datetime import datetime
 import hashlib
 
