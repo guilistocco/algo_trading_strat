@@ -1,0 +1,19 @@
+version: '3.9'
+services:
+  ethe_macross:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        STRATEGY: docker/ethe_macross
+    container_name: ethe_macross
+    restart: always
+
+  gold_meanrev:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        STRATEGY: docker/gold_meanrev
+    container_name: gold_meanrev
+    restart: always
