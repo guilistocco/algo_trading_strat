@@ -16,6 +16,8 @@ from crypto_data_feed import fetch_recent_data
 from signal_ethereum import generate_signal
 from order_executor import send_order, close_position
 from stage_manager import load_state, save_state
+from send_email import EmailSender
+from config_etf import SYMBOL, QTY
 
 email_sender = EmailSender()
 
@@ -31,11 +33,11 @@ def main_loop():
                 print(f"[SINAL] {signal}")
 
                 if signal["action"] == "buy":
-                    send_order("buy")
+                    send_order("buy", SYMBOL, QTY)
                     state = {"side": "long", "entry_price": df['close'].iloc[-1]}
                     
                 elif signal["action"] == "sell":
-                    send_order("sell")
+                    send_order("sell", SYMBOL, QTY)
                     state = {"side": "short", "entry_price": df['close'].iloc[-1]}
                 elif signal["action"] == "close":
                     close_position()

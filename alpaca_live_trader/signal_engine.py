@@ -1,5 +1,6 @@
 import talib
 import pandas as pd
+from pprint import pprint
 from config import *
 
 def generate_signal(df: pd.DataFrame, position: dict) -> dict:
@@ -24,6 +25,8 @@ def generate_signal(df: pd.DataFrame, position: dict) -> dict:
 
     adx = df['adx'].iloc[-1]
     price = df['close'].iloc[-1]
+
+    pprint(df)
 
     # Stop loss
     if position.get("side") and position.get("entry_price"):

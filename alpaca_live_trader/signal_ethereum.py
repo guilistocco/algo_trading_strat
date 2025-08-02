@@ -1,6 +1,7 @@
 import pandas as pd
 import pandas_ta as ta
 from config_etf import *
+from pprint import pprint
 
 
 
@@ -16,6 +17,7 @@ def generate_signal(df: pd.DataFrame, position: dict) -> dict:
     df['ma_short'] = df['close'].rolling(SHORT_WINDOW).mean()
     df['ma_long'] = df['close'].rolling(LONG_WINDOW).mean()
     df['adx'] = ta.adx(high=df['high'], low=df['low'], close=df['close'], length=T_PERIOD)['ADX_14']
+    df.dropna(how="any", inplace=True)
 
     if df[['ma_short', 'ma_long', 'adx']].isna().any().any() or len(df) < max(SHORT_WINDOW, LONG_WINDOW, T_PERIOD) + 2:
         return {"action": "hold", "reason": "indicadores_incompletos"}

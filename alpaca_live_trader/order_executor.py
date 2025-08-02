@@ -1,17 +1,17 @@
 from alpaca.trading.enums import OrderSide, TimeInForce
 from alpaca.trading.requests import MarketOrderRequest
 from alpaca_oms.alpaca_client import get_trading_client
-from config import SYMBOL, QTY
+# from config import SYMBOL, QTY
 
 trading_client = get_trading_client()
 
-def send_order(action: str):
+def send_order(action: str, papel:str, quantity:int):
     if action not in ["buy", "sell"]:
         return
 
     order_data = MarketOrderRequest(
-        symbol=SYMBOL,
-        qty=QTY,
+        symbol=papel,
+        qty=quantity,
         side=OrderSide.BUY if action == "buy" else OrderSide.SELL,
         time_in_force=TimeInForce.GTC
     )
