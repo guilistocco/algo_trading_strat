@@ -1,7 +1,5 @@
 import pandas as pd
-from config_etf import SHORT_WINDOW, LONG_WINDOW, BUFFER_PCT
-from pprint import pprint
-
+from config_example import SHORT_WINDOW, LONG_WINDOW, BUFFER_PCT
 
 
 def generate_signal(df: pd.DataFrame, position: dict) -> dict:
@@ -32,9 +30,6 @@ def generate_signal(df: pd.DataFrame, position: dict) -> dict:
     diff = ma_short - ma_long
     buffer = BUFFER_PCT * price
     
-    # from pprint import pprint
-    # pprint(df)
-
     cross_up = prev_ma_short <= prev_ma_long and ma_short > ma_long and diff > buffer
     cross_down = prev_ma_short >= prev_ma_long and ma_short < ma_long and abs(diff) > buffer
 

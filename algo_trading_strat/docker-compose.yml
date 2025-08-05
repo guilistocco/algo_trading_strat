@@ -1,18 +1,38 @@
 services:
   ethe_macross:
     build:
-      context: .
-      dockerfile: Dockerfile
-      args:
-        STRATEGY: docker/ethe_macross
+      context: ./strategies/ethe_macross
+    volumes:
+      - ./shared:/app/shared
+      - ./logs:/app/logs
     container_name: ethe_macross
-    restart: always
+    restart: unless-stopped
 
   gold_meanrev:
     build:
-      context: .
-      dockerfile: Dockerfile
-      args:
-        STRATEGY: docker/gold_meanrev
+      context: ./strategies/gold_meanrev
+    volumes:
+      - ./shared:/app/shared
+      - ./logs:/app/logs
     container_name: gold_meanrev
-    restart: always
+    restart: unless-stopped
+
+  examp_strate:
+    build:
+      context: ./strategies/examp_strate
+    volumes:
+      - ./shared:/app/shared
+      - ./logs:/app/logs
+    container_name: examp_strate
+    restart: unless-stopped
+
+  monitoring_screen:
+    build:
+      context: .
+      dockerfile: Dockerfile.monitoring
+    ports:
+      - "8501:8501"
+    volumes:
+      - ./logs:/app/logs
+    container_name: monitoring_screen
+    restart: unless-stopped

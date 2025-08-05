@@ -21,6 +21,7 @@ from config_etf import SYMBOL, QTY
 
 email_sender = EmailSender()
 
+
 def main_loop():
     print("Iniciando loop de trading live...")
     try:
@@ -35,12 +36,12 @@ def main_loop():
                 if signal["action"] == "buy":
                     send_order("buy", SYMBOL, QTY)
                     state = {"side": "long", "entry_price": df['close'].iloc[-1]}
-                    
+
                 elif signal["action"] == "sell":
                     send_order("sell", SYMBOL, QTY)
                     state = {"side": "short", "entry_price": df['close'].iloc[-1]}
                 elif signal["action"] == "close":
-                    close_position()
+                    close_position(SYMBOL)
                     state = {}
 
                 if signal["action"] in ["buy", "sell", "close"]:

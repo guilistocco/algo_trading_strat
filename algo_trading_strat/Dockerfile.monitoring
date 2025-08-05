@@ -1,0 +1,17 @@
+# docker build -f Dockerfile.monitoring -t monitoring_screen .
+# docker run -p 8501:8501 monitoring_screen
+
+FROM python:3.10-slim
+
+WORKDIR /app
+
+# Copia tudo necessário
+COPY ./monitoring_screen/screen.py ./screen.py
+COPY ./alpaca_secrets.py ./alpaca_secrets.py
+COPY ./monitoring_screen/requirements.txt ./requirements.txt
+
+RUN pip install --no-cache-dir -r requirements.txt
+
+EXPOSE 8501
+
+CMD ["streamlit", "run", "screen.py", "--server.headless=true"]
