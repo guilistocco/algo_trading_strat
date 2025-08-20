@@ -1,6 +1,17 @@
 import logging
 from logging.handlers import TimedRotatingFileHandler
 import os
+import pendulum
+
+class GMT3Formatter(logging.Formatter):
+    def formatTime(self, record, datefmt=None):
+        # Usa pendulum para ajustar para GMT-3
+        dt = pendulum.from_timestamp(record.created, tz='UTC').in_tz('America/Sao_Paulo')
+        if datefmt:
+            s = dt.strftime(datefmt)
+        else:
+            s = dt.strftime("%Y-%m-%d %H:%M:%S")
+        return s
 
 def setup_logger(strategy='default', log_dir='../logs', log_level=logging.INFO):
     os.makedirs(log_dir, exist_ok=True)
@@ -17,7 +28,7 @@ def setup_logger(strategy='default', log_dir='../logs', log_level=logging.INFO):
             backupCount=14,
             encoding='utf-8'
         )
-        formatter = logging.Formatter("[%(asctime)s] [%(levelname)s] %(message)s")
+        formatter = GMT3Formatter("[%(asctime)s] [%(levelname)s] %(message)s")
         handler.setFormatter(formatter)
         handler.suffix = "%Y-%m-%d"
 

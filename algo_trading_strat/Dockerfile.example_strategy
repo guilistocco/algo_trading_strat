@@ -1,0 +1,19 @@
+# docker build -f Dockerfile.example_strategy -t example_trading_strategy:v1 .
+# docker run --name example_trading_strategy_v1 example_trading_strategy:v1
+# docker run -d --name example_trading_strategy_v1 example_trading_strategy:v1
+# docker exec -it example_trading_strategy_v1 /bin/sh
+
+
+FROM python:3.10-slim
+
+# Define o diretório de trabalho dentro do container
+WORKDIR /app
+
+# Copia tudo para o container
+COPY . .
+
+# Instala dependências
+# RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install -r requirements.txt
+
+CMD ["python", "strategies/examp_strate/run_example.py"]

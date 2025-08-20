@@ -59,6 +59,7 @@ peewee==3.18.1
 pexpect==4.9.0
 pillow==11.3.0
 platformdirs==4.3.8
+pendulum==3.1.0
 plotly==6.2.0
 premailer==3.10.0
 prompt_toolkit==3.0.51
