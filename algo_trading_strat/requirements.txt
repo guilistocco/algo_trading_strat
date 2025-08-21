@@ -50,7 +50,7 @@ msgpack==1.1.1
 multitasking==0.0.11
 narwhals==1.46.0
 nest-asyncio==1.6.0
-numpy==2.2.6
+numpy==1.23.5
 packaging==25.0
 pandas==2.3.0
 pandas_ta==0.3.14b0

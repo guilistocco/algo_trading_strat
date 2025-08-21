@@ -3,12 +3,12 @@ import pandas_ta as ta
 from config_iau import *
 
 
-def generate_signal_zscore_stoploss(df: pd.DataFrame, position: dict) -> dict:
+def generate_signal(df: pd.DataFrame, position: dict) -> dict:
     if df.empty or "close" not in df.columns:
-        return {"action": "hold", "reason": "empty_or_missing_data"}
+        return {"action": "hold", "reason": "empty_or_incomplete_df"}
 
     if len(df) < WINDOW + 2:
-        return {"action": "hold", "reason": "insufficient_data"}
+        return {"action": "hold", "reason": "incomplete_indicators"}
 
     df = df.copy()
     df['ma'] = df['close'].rolling(WINDOW).mean()
@@ -56,4 +56,4 @@ def generate_signal_zscore_stoploss(df: pd.DataFrame, position: dict) -> dict:
         if stop_hit:
             return {"action": "close", "reason": "stop_loss_triggered"}
 
-    return {"action": "hold", "reason": "no_conditions_met"}
+    return {"action": "hold", "reason": "no_conditions"}

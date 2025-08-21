@@ -8,3 +8,5 @@ email_secrets.py
 /alpaca_live_trader/__pycache__
 /alpaca_oms/__pycache__
 *.csv
+/algo_trading_strat/shared/__pycache__
+/algo_trading_strat/strategies/examp_strate/__pycache__

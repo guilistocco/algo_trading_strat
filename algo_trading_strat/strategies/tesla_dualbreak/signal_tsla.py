@@ -3,13 +3,13 @@ import pandas_ta as ta
 from config_tsla import *
 
 
-def generate_signal_dual_breakout(df: pd.DataFrame, position: dict) -> dict:
+def generate_signal(df: pd.DataFrame, position: dict) -> dict:
     required_cols = {'close'}
     if df.empty or not required_cols.issubset(df.columns):
         return {"action": "hold", "reason": "empty_or_incomplete_df"}
 
     if len(df) < BREAKOUT_WINDOW + 1:
-        return {"action": "hold", "reason": "insufficient_data"}
+        return {"action": "hold", "reason": "incomplete_indicators"}
 
     df = df.copy()
     df['high_breakout'] = df['close'].rolling(BREAKOUT_WINDOW).max()
@@ -36,4 +36,4 @@ def generate_signal_dual_breakout(df: pd.DataFrame, position: dict) -> dict:
         elif close <= low_breakout:
             return {"action": "sell", "reason": "breakout_down"}
 
-    return {"action": "hold", "reason": "no_conditions_met"}
+    return {"action": "hold", "reason": "no_conditions"}

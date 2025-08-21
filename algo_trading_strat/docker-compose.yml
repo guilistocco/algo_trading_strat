@@ -1,25 +1,24 @@
+version: '3.8'
+
 services:
-  ethe_macross:
-    build:
-      context: ./strategies/ethe_macross
+  tesla_dualbreak:
+    image: tesla_dualbreak_strategy:v1
     volumes:
       - ./shared:/app/shared
       - ./logs:/app/logs
-    container_name: ethe_macross
+    container_name: tesla_dualbreak
     restart: unless-stopped
 
-  gold_meanrev:
-    build:
-      context: ./strategies/gold_meanrev
+  iau_meanrev:
+    image: iau_meanrev_strategy:v1
     volumes:
       - ./shared:/app/shared
       - ./logs:/app/logs
-    container_name: gold_meanrev
+    container_name: iau_meanrev
     restart: unless-stopped
 
   examp_strate:
-    build:
-      context: ./strategies/examp_strate
+    image: example_trading_strategy:v1
     volumes:
       - ./shared:/app/shared
       - ./logs:/app/logs
@@ -27,6 +26,7 @@ services:
     restart: unless-stopped
 
   monitoring_screen:
+    image: monitoring_screen:v1
     build:
       context: .
       dockerfile: Dockerfile.monitoring
